@@ -1,3 +1,7 @@
+common:
+	git pull
+	rm -f .terraform/terraform.tfstate
+
 dev-apply:
 	rm -rf .terraform/terraform.tfstate
 	terraform init -backend-config=env-dev/state.tfvars
