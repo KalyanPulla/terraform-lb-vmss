@@ -1,0 +1,40 @@
+resource "azurerm_virtual_machine_scale_set" "main" {
+  name                = "${var.component_name}-${var.env}"
+  location            = data.azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  upgrade_policy_mode = "Rolling"
+
+  sku {
+    name     = "Standard_B2ts_v2"
+    tier     = "Standard"
+    capacity = 2
+  }
+
+  storage_profile_os_disk {
+    name          = "osDiskProfile"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+    image         = var.image_id
+    os_type       = "Linux"
+  }
+
+  os_profile {
+    computer_name_prefix = "${var.component_name}-${var.env}"
+    admin_username       = "devops"
+    admin_password       = "devops@12345"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+
+  network_profile {
+    name    = "${var.component_name}-${var.env}"
+    primary = true
+
+    ip_configuration {
+      name      = "${var.component_name}-${var.env}"
+      primary   = true
+      subnet_id = var.subnet_id
+    }
+  }

@@ -15,27 +15,27 @@ apps = {
   catalogue    = {
     port = 8002
   }
-  user         = {
-    port = 8001
-  }
-  cart         = {
-    port = 8003
-  }
-  shipping     = {
-    port = 8004
-  }
-  payment      = {
-    port = 8005
-  }
-  notification = {
-    port = 8008
-  }
-  orders       = {
-    port = 8007
-  }
-  ratings      = {
-    port = 8006
-  }
+  # user         = {
+  #   port = 8001
+  # }
+  # cart         = {
+  #   port = 8003
+  # }
+  # shipping     = {
+  #   port = 8004
+  # }
+  # payment      = {
+  #   port = 8005
+  # }
+  # notification = {
+  #   port = 8008
+  # }
+  # orders       = {
+  #   port = 8007
+  # }
+  # ratings      = {
+  #   port = 8006
+  # }
 }
 
 ui = {
