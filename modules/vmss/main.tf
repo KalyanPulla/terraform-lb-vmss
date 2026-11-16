@@ -38,3 +38,4 @@ resource "azurerm_virtual_machine_scale_set" "main" {
       subnet_id = var.subnet_id
     }
   }
+}
