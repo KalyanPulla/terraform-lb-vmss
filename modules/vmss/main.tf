@@ -110,7 +110,7 @@ resource "azurerm_dns_a_record" "main" {
   count = local.lb_enabled ? 1 : 0
 
   name                = "${var.component_name}-${var.env}"
-  zone_name           = "rdevopsb89.online"
+  zone_name           = "kaldevops14.online"
   resource_group_name = var.rg_name
   ttl                 = 30
   records             = local.lb_public ? [azurerm_public_ip.main[0].ip_address] : [azurerm_lb.main[0].frontend_ip_configuration[0].private_ip_address]
