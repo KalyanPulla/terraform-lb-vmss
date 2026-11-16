@@ -3,4 +3,3 @@ variable "rgname" {}
 variable "image_id" {}
 variable "subnet_id" {}
 variable "env" {}
-variable "rgname" {}
