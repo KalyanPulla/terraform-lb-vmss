@@ -6,9 +6,9 @@ subnet_id = "/subscriptions/396632f7-adca-488d-bb48-22d93391890f/resourceGroups/
 
 db = {
   mysql    = {}
-  mongodb  = {}
-  valkey   = {}
-  rabbitmq = {}
+  # mongodb  = {}
+  # valkey   = {}
+  # rabbitmq = {}
 }
 
 apps = {
