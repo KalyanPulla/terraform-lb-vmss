@@ -21,7 +21,6 @@ module "apps" {
   subnet_id      = var.subnet_id
   env            = var.env
 }
-
 # module "ui" {
 #   depends_on     = [module.apps]
 #   for_each       = var.ui
