@@ -64,7 +64,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   location            = var.rg_location
   resource_group_name = var.rg_name
 
-  sku            = "Standard_B2ts_v2"
+  sku            = "Standard_B1ms"
   instances      = 2
   admin_username = "devops"
   admin_password = "DevOps@123456"
