@@ -13,7 +13,7 @@ module "apps" {
   depends_on = [ module.db ]
   source         = "./modules/vmss"
 
-  for_each       = var.db
+  for_each       = var.apps
   component_name = each.key
 
   rgname         = var.rgname
