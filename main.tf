@@ -20,7 +20,6 @@ module "apps" {
   image_id       = var.image_id
   subnet_id      = var.subnet_id
   env            = var.env
-  vm_count       = 2
 }
 
 # module "ui" {
