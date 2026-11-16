@@ -1,36 +1,49 @@
 module "db" {
+  source = "./modules/vm"
+
   for_each       = var.db
-  source         = "./modules/vm"
   component_name = each.key
-  rgname         = var.rgname
-  image_id       = var.image_id
-  subnet_id      = var.subnet_id
-  env            = var.env
-  vm_count       = 1
+  vm_size        = try(each.value["vm_size"], "Standard_B1s")
+
+  rgname    = var.rgname
+  image_id  = var.image_id
+  env       = var.env
+  subnet_id = var.subnet_id
+  vm_count  = 1
 }
 
+
 module "apps" {
-  depends_on = [ module.db ]
-  source         = "./modules/vmss"
+  depends_on = [module.db]
+  source     = "./modules/vmss"
 
   for_each       = var.apps
   component_name = each.key
+  port           = each.value["port"]
 
-  rgname         = var.rgname
-  image_id       = var.image_id
-  subnet_id      = var.subnet_id
-  env            = var.env
+  lb_type = "private"
+
+  env         = var.env
+  image_id    = var.image_id
+  rg_name     = data.azurerm_resource_group.main.name
+  rg_location = data.azurerm_resource_group.main.location
+  subnet_id   = var.subnet_id
 }
-# module "ui" {
-#   depends_on     = [module.apps]
-#   for_each       = var.ui
-#   source         = "./modules/vm"
-#   component_name = each.key
-#   port           = each.value["port"]
-#   lb_type        = "public"
-#   rgname         = var.rgname
-#   image_id       = var.image_id
-#   subnet_id      = var.subnet_id
-#   env            = var.env
-#   vm_count       = 2
-# }
+
+
+module "ui" {
+  depends_on = [module.apps]
+  source     = "./modules/vmss"
+
+  for_each       = var.ui
+  component_name = each.key
+  port           = each.value["port"]
+
+  lb_type = "public"
+
+  env         = var.env
+  image_id    = var.image_id
+  rg_name     = data.azurerm_resource_group.main.name
+  rg_location = data.azurerm_resource_group.main.location
+  subnet_id   = var.subnet_id
+}

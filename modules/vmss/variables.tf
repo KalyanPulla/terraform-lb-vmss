@@ -1,5 +1,12 @@
 variable "component_name" {}
-variable "rgname" {}
+variable "env" {}
 variable "image_id" {}
 variable "subnet_id" {}
-variable "env" {}
+variable "port" {}
+
+variable "lb_type" {
+  default = null
+}
+
+variable "rg_name" {}
+variable "rg_location" {}
